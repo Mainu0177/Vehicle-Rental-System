@@ -12,9 +12,6 @@ app.use(express.json())
 
 initDB();
 
-app.get('/', logger, (req:Request, res:Response) => {
-    res.send('Mainuddin Khan!')
-})
 
 app.use("/api/v1/users", userRoutes);
 
@@ -25,5 +22,9 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/vehicles", vehicleRoutes);
 
 app.use("/api/v1/bookings", bookingRoutes);
+
+app.get('/', (req:Request, res:Response) => {
+    res.send('Mainuddin Khan!')
+})
 
 export default app;
