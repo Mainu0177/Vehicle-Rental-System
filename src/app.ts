@@ -1,15 +1,20 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import initDB from "./config/db";
 import { userRoutes } from "./modules/user/user.routes";
 import { authRoutes } from "./modules/auth/auth.routes";
 import { vehicleRoutes } from "./modules/vehicle/vehicle.routes";
 import { bookingRoutes } from "./modules/booking/booking.routes";
+import logger from "./middleware/logger";
 
 const app = express();
 
 app.use(express.json())
 
 initDB();
+
+app.get('/', logger, (req:Request, res:Response) => {
+    res.send('Mainuddin Khan!')
+})
 
 app.use("/api/v1/users", userRoutes);
 

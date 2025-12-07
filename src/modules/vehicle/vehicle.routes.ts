@@ -4,11 +4,11 @@ import auth from '../../middleware/auth';
 
 const router = express.Router();
 
-router.post("/", auth(), vehicleControllers.createVehicle);
+router.post("/", auth("admin"), vehicleControllers.createVehicle);
 router.get("/", vehicleControllers.getAllVehicle);
 router.get("/:id", vehicleControllers.getSingleVehicle);
-router.put("/:id", auth(), vehicleControllers.updateVehicle)
-router.delete("/:id", auth(), vehicleControllers.deleteVehicle)
+router.put("/:id", auth("admin", "user"), vehicleControllers.updateVehicle)
+router.delete("/:id", auth("admin"), vehicleControllers.deleteVehicle)
 
 
 export const vehicleRoutes = router;

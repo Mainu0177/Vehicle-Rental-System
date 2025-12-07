@@ -6,7 +6,7 @@ import auth from '../../middleware/auth';
 const router = express.Router();
 
 router.post("/", bookingControllers.createBooking);
-router.get("/", auth(), bookingControllers.getAllBooking);
-router.put("/:id", auth(), bookingControllers.updateBookingStatus)
+router.get("/", auth("admin"), bookingControllers.getAllBooking);
+router.put("/:id", auth("admin"), bookingControllers.updateBookingStatus)
 
 export const bookingRoutes = router;
