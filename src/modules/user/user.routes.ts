@@ -7,8 +7,8 @@ const router = express.Router();
 
 router.post("/signup", userControllers.createUser);
 router.get("/", logger, auth("admin"), userControllers.getAllUsers);
-router.get("/:id", auth("admin", "user"), userControllers.getSingleUser);
-router.put("/:id", auth("admin", "user"), userControllers.updateUser);
+router.get("/:id", auth("admin", "customer"), userControllers.getSingleUser);
+router.put("/:id", auth("admin", "customer"), userControllers.updateUser);
 router.delete("/:id", auth("admin"), userControllers.deleteUser);
 
 export const userRoutes = router
