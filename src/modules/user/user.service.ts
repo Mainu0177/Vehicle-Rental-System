@@ -18,8 +18,14 @@ const createUser = async (payload: Record<string, unknown>) => {
 
 const getAllUsers = async () => {
     const result = await pool.query(`SELECT * FROM users`);
-    delete result.rows[0].password
-    return result
+
+    const users = result.rows.map(user => {
+        const { password, ...rest } = user;
+        return rest
+    })
+    return users
+    // delete result.rows[0].password
+    // return result
 }
 
 const getSingleUser = async (id:string) => {
