@@ -12,11 +12,12 @@ const auth = (...roles: string[]) => {
     return (req: Request & {user?: IUserToken}, res: Response, next: NextFunction) => {
         try {
             const token = req.headers.authorization;
-            if (!token) {
+            const accessToken = token?.split(" ")[1]
+            if (!accessToken) {
                 throw new Error("You are not allowed!")
             }
 
-            const decoded = jwt.verify(token, config.jwtSecret as string) as IUserToken;
+            const decoded = jwt.verify(accessToken, config.jwtSecret as string) as IUserToken;
             req.user = decoded;
 
             if (roles.length && !roles.includes(decoded.role as string)) {

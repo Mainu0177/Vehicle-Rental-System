@@ -38,6 +38,14 @@ const createBooking = async (payload: any) => {
 
     return {
         ...booking,
+        rent_start_date: new Date(booking.rent_start_date)
+            .toISOString()
+            .split("T")[0],
+
+        rent_end_date: new Date(booking.rent_end_date)
+            .toISOString()
+            .split("T")[0],
+        
         vehicle: {
             vehicle_name: vehicle.vehicle_name,
             daily_rent_price: vehicle.daily_rent_price,
