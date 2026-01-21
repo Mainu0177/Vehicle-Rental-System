@@ -95,7 +95,10 @@ const updateBookingStatus = async (req: Request & {user?: any}, res: Response) =
             data: result
         })
     } catch (error:any) {
-        
+        res.status(500).json({
+            success: false,
+            message: error.message
+        })
     }
 }
 

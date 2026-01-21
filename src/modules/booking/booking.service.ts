@@ -111,7 +111,7 @@ const updateBookingStatus = async (bookingId: string, status: "cancelled" | "ret
     let vehicleUpdate = null;
 
     if (status === "returned") {
-        vehicleUpdate = await pool.query(`UPDATE vehicles SET availability_status='available WHERE id=$1 RETURNING availability_status`, [booking.vehicle_id]);
+        vehicleUpdate = await pool.query(`UPDATE vehicles SET availability_status='available' WHERE id=$1 RETURNING availability_status`, [booking.vehicle_id]);
         return {
             ...updated,
             vehicle: vehicleUpdate?.rows[0]
